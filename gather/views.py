@@ -1,3 +1,6 @@
-from django.shortcuts import render
+from django.http import HttpResponse
+from .tasks import hello_world
 
-# Create your views here.
+def index(request):
+    hello_world.delay()
+    return HttpResponse('Hello')
